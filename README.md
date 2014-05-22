@@ -6,11 +6,19 @@ Retorna um JSON com os dados de determinado CEP
 ============
 
 ## Exemplos ##
+Sem o Rewrite com .htaccess
 Exemplo de uso:
 correios.php?cep=00000000
 
 Exemplo em funcionamento:
 http://matheusdev.kd.io/correios.php?cep=00000000
+
+Com o Rewrite com .htaccess (agradecimentos ao @icaromh2)
+Exemplo de uso:
+cep_correios/00000000
+
+Exemplo em funcionamento:
+http://matheusdev.kd.io/cep_correios/00000000
 
 ## Retorno ##
 
