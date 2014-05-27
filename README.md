@@ -29,14 +29,6 @@ Se encontrar os dados para o CEP passdo, o retorno será:
   "logadouro": "Rua Exemplo",
   "bairro": "Bairro Exemplo",
   "cidade": "Cidade Exemplo",
-  "estado": "UF Exemplo"
-}
-```
-
-Caso não encontre, o retorno será:
-```javascript
-{
-  "erro": 1,
-  "msg": "CEP não encontrado ou Serviço dos correios offline"
+  "cep": "CEP Exemplo"
 }
 ```
