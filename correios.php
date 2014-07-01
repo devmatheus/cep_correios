@@ -12,7 +12,6 @@ if (empty($_GET['cep'])) {
 
 $cep = $_GET['cep'];
 
-
 $urlCorreios = 'http://m.correios.com.br/movel/buscaCepConfirma.do';
 
 $postFields = array(
@@ -22,8 +21,7 @@ $postFields = array(
     'metodo'=>'buscarCep'
 );
 
-
-if (extension_loaded('curl') && false) { //FIXME
+if (extension_loaded('curl')) {
 
     $ch = curl_init($urlCorreios);
     curl_setopt ($ch, CURLOPT_POST, 1);
@@ -43,7 +41,6 @@ if (extension_loaded('curl') && false) { //FIXME
     );
 
     $context = stream_context_create($request);
-
     $html = file_get_contents($urlCorreios, false, $context);
 }
 
@@ -52,15 +49,10 @@ if ($html === false) {
 }
 
 $doc = new DOMDocument();
-
 @$doc->loadHTML($html);
-
 $xpath = new DomXPath($doc);
-
 $nodes = $xpath->query("//span[@class='respostadestaque']");
-
 $totRegistros = $nodes->length / 4;
-
 
 if (0 == $totRegistros) {
     die(json_encode(array('erro' => 1, 'msg' => 'Sem registros (CEP não encontrado)')));
@@ -70,13 +62,10 @@ $arrResultado = array();
 $arrInfo = array('logadouro', 'bairro', 'cidade', 'cep');
 
 for ($registro = 0; $registro < $totRegistros; $registro++) {
-
     $arrResultado[$registro + 1] = array();
     
     foreach ($arrInfo as $index => $value) {
-    
         $pos = ($registro * 4) + $index;
-        
         $arrResultado[$registro + 1][$value] = preg_replace('/\s{2,}/', ' ', $nodes->item($pos)->nodeValue);
     }
 }
