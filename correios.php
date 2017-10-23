@@ -59,7 +59,7 @@ if (0 == $totRegistros) {
 }
 
 $arrResultado = array();
-$arrInfo = array('logadouro', 'bairro', 'cidade', 'cep');
+$arrInfo = array('logradouro', 'bairro', 'cidade', 'cep');
 
 for ($registro = 0; $registro < $totRegistros; $registro++) {
     $arrResultado[$registro + 1] = array();
